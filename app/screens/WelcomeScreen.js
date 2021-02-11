@@ -7,7 +7,7 @@ export default function WelcomeScreen() {
     <ImageBackground
       style={styles.background}
       source={require('../assets/background.jpg')}
-      blurRadius={10}
+      blurRadius={5}
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require('../assets/logo-red.png')} />
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   tagLine: {
     fontSize: 25,
-    fontWeight: 600,
+    fontWeight: "600",
     marginTop: 20,
   },
   buttonsContainer: {
