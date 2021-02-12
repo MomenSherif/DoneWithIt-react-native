@@ -23,6 +23,8 @@ const initialMessages = [
 
 export default function MessagesScreen() {
   const [messages, setMessages] = useState(initialMessages);
+  const [refreshing, setRefreshing] = useState(false);
+
   const handleDelete = id => {
     setMessages(messages.filter(m => m.id !== id));
   };
@@ -42,6 +44,10 @@ export default function MessagesScreen() {
             renderRightActions={(props) => <ListItemDeleteAction {...props} onPress={() => handleDelete(item.id)} />}
           />
         )}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setMessages(prev => [...prev, { ...prev[0], id: Math.random() }])
+        }}
       />
     </Screen>
   );
