@@ -20,7 +20,7 @@ export default function AppPicker({ icon, items, selectedItem, onSelectItem, pla
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
           {icon && <MaterialCommunityIcons name={icon} size={20} color={defaultStyles.colors.medium} style={styles.icon} />}
-          <AppText style={styles.text}>
+          <AppText style={[styles.text, !selectedItem && { color: defaultStyles.colors.medium }]}>
             {selectedItem?.label ?? placeholder}
           </AppText>
           <MaterialCommunityIcons name="chevron-down" size={20} color={defaultStyles.colors.medium} />
@@ -56,10 +56,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text: {
-    flex: 1,
-  },
-  textInput: {
     ...defaultStyles.text,
-    flex: 1,
   },
 });

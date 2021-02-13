@@ -10,6 +10,7 @@ export default function AppTextInput({ icon, ...props }) {
       {icon && <MaterialCommunityIcons name={icon} size={20} color={defaultStyles.colors.medium} style={styles.icon} />}
       <TextInput
         style={styles.textInput}
+        placeholderTextColor={defaultStyles.colors.medium}
         {...props}
       />
     </View>

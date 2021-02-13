@@ -9,7 +9,7 @@ export default function AppFormPicker({ name, icon, placeholder, items }) {
   return (
     <>
       <AppPicker
-        items={item}
+        items={items}
         selectedItem={values[name]}
         onSelectItem={item => setFieldValue(name, item)}
         icon={icon}
