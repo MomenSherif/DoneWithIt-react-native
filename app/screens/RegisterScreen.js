@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { AppFormField, SubmitButton } from '../components/forms';
+import { FormField, SubmitButton } from '../components/forms';
 import Screen from '../components/Screen';
 
 const validationSchema = Yup.object().shape({
@@ -25,7 +25,7 @@ export default function RegisterScreen() {
         validationSchema={validationSchema}
       >
         <>
-          <AppFormField
+          <FormField
             name="name"
             placeholder="Name"
             autoCapitalize="none"
@@ -33,7 +33,7 @@ export default function RegisterScreen() {
             icon="account"
             textContentType="name"
           />
-          <AppFormField
+          <FormField
             name="email"
             placeholder="Email"
             autoCapitalize="none"
@@ -42,7 +42,7 @@ export default function RegisterScreen() {
             keyboardType="email-address"
             textContentType="emailAddress"
           />
-          <AppFormField
+          <FormField
             name="password"
             placeholder="Password"
             autoCapitalize="none"

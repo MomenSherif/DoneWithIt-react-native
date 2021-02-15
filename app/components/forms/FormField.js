@@ -2,16 +2,17 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import { StyleSheet } from 'react-native';
 
-import AppTextInput from '../AppTextInput';
+import TextInput from '../TextInput';
 import ErrorMessage from './ErrorMessage';
 
-export default function AppFormField({ name, ...props }) {
+export default function AppFormField({ name, width, ...props }) {
   const { handleChange, handleBlur, errors, touched } = useFormikContext();
   return (
     <>
-      <AppTextInput
+      <TextInput
         onChangeText={handleChange(name)}
         onBlur={handleBlur(name)}
+        width={width}
         {...props}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />

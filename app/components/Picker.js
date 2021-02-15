@@ -2,12 +2,21 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Modal, Button, FlatList } from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from './AppText';
+import Text from './Text';
 import defaultStyles from '../config/styles';
 import Screen from './Screen';
 import PickerItem from './PickerItem';
 
-export default function AppPicker({ icon, items, selectedItem, onSelectItem, placeholder }) {
+export default function AppPicker({
+  icon,
+  items,
+  selectedItem,
+  onSelectItem,
+  numberOfColumns = 1,
+  PickerItemComponent = PickerItem,
+  placeholder,
+  width = '100%',
+}) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleSelect = item => {
@@ -18,11 +27,11 @@ export default function AppPicker({ icon, items, selectedItem, onSelectItem, pla
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
           {icon && <MaterialCommunityIcons name={icon} size={20} color={defaultStyles.colors.medium} style={styles.icon} />}
-          <AppText style={[styles.text, !selectedItem && { color: defaultStyles.colors.medium }]}>
+          <Text style={[styles.text, !selectedItem && { color: defaultStyles.colors.medium }]}>
             {selectedItem?.label ?? placeholder}
-          </AppText>
+          </Text>
           <MaterialCommunityIcons name="chevron-down" size={20} color={defaultStyles.colors.medium} />
         </View>
       </TouchableWithoutFeedback>
@@ -32,8 +41,9 @@ export default function AppPicker({ icon, items, selectedItem, onSelectItem, pla
           <FlatList
             data={items}
             keyExtractor={item => item.value.toString()}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => (
-              <PickerItem label={item.label} onPress={() => handleSelect(item)} />
+              <PickerItemComponent item={item} label={item.label} onPress={() => handleSelect(item)} />
             )}
           />
         </Screen>
@@ -45,7 +55,6 @@ export default function AppPicker({ icon, items, selectedItem, onSelectItem, pla
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: '100%',
     padding: 15,
     borderRadius: 25,
     backgroundColor: defaultStyles.colors.light,
@@ -57,5 +66,6 @@ const styles = StyleSheet.create({
   },
   text: {
     ...defaultStyles.text,
+    flex: 1,
   },
 });
