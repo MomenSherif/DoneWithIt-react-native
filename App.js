@@ -9,20 +9,7 @@ import ImageInputList from './app/components/ImageInputList';
 export default function App() {
   const [imageUris, setImageUris] = useState([]);
 
-  const handleAdd = (uri) => setImageUris((uris) => uris.concat(uri));
-
-  const handleRemove = (uri) =>
-    setImageUris((uris) => uris.filter((u) => u !== uri));
-
-  return (
-    <Screen>
-      <ImageInputList
-        imageUris={imageUris}
-        onAddImage={handleAdd}
-        onRemoveImage={handleRemove}
-      />
-    </Screen>
-  );
+  return <Screen></Screen>;
 }
 
 const styles = StyleSheet.create({});
