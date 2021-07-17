@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, } from 'react-native';
-import ListingEditScreen from './app/screens/ListingEditScreen';
+import React, { useState, useEffect } from 'react';
+import { Alert, Button, Image, StyleSheet, Text } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
-
-import RegisterScreen from './app/screens/RegisterScreen';
+import Screen from './app/components/Screen';
+import ImageInput from './app/components/ImageInput';
 
 export default function App() {
+  const [imageUri, setImageUri] = useState(null);
   return (
-    <ListingEditScreen />
+    <Screen>
+      <ImageInput imageUri={imageUri} onChangeImage={setImageUri} />
+    </Screen>
   );
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
