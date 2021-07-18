@@ -1,9 +1,9 @@
-import React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import React from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { AppFormField, SubmitButton } from '../components/forms';
+import { FormField, SubmitButton } from '../components/forms';
 import Screen from '../components/Screen';
 
 const validationSchema = Yup.object().shape({
@@ -12,20 +12,16 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function LoginScreen() {
-
   return (
     <Screen style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={require('../assets/logo-red.png')}
-      />
+      <Image style={styles.logo} source={require('../assets/logo-red.png')} />
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={console.log}
         validationSchema={validationSchema}
       >
         <>
-          <AppFormField
+          <FormField
             name="email"
             autoCapitalize="none"
             autoCorrect={false}
@@ -34,7 +30,7 @@ export default function LoginScreen() {
             placeholder="Email"
             textContentType="emailAddress"
           />
-          <AppFormField
+          <FormField
             name="password"
             autoCapitalize="none"
             autoCorrect={false}
@@ -46,7 +42,6 @@ export default function LoginScreen() {
           <SubmitButton title="Login" style={styles.submitBtn} />
         </>
       </Formik>
-
     </Screen>
   );
 }
@@ -63,6 +58,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   submitBtn: {
-    marginTop: 10
+    marginTop: 10,
   },
 });

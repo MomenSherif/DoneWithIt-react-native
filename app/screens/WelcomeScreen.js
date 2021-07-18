@@ -1,8 +1,13 @@
 import React from 'react';
 import { ImageBackground, Text, StyleSheet, View, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import Button from '../components/Button';
+import routes from '../navigation/routes';
 
 export default function WelcomeScreen() {
+  const navigation = useNavigation();
+
   return (
     <ImageBackground
       style={styles.background}
@@ -14,8 +19,16 @@ export default function WelcomeScreen() {
         <Text style={styles.tagLine}>Sell What You Don't need</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Button title="Login" />
-        <Button title="Register" color="secondary" buttonStyle={styles.registerButton} />
+        <Button
+          title="Login"
+          onPress={() => navigation.navigate(routes.LOGIN)}
+        />
+        <Button
+          title="Register"
+          color="secondary"
+          buttonStyle={styles.registerButton}
+          onPress={() => navigation.navigate(routes.REGISTER)}
+        />
       </View>
     </ImageBackground>
   );
@@ -38,13 +51,13 @@ const styles = StyleSheet.create({
   },
   tagLine: {
     fontSize: 25,
-    fontWeight: "600",
+    fontWeight: '600',
     marginTop: 20,
   },
   buttonsContainer: {
     padding: 20,
   },
   registerButton: {
-    marginTop: 20
+    marginTop: 20,
   },
 });

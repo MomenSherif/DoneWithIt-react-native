@@ -3,9 +3,11 @@ import { StyleSheet, View, FlatList } from 'react-native';
 
 import ListItemSeparator from '../components/ListItemSeparator';
 import ListItem from '../components/ListItem';
-import Screen from '../components/Screen'
+import Screen from '../components/Screen';
 import Icon from '../components/Icon';
 import colors from '../config/colors';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../navigation/routes';
 
 const menuItems = [
   {
@@ -13,18 +15,20 @@ const menuItems = [
     icon: {
       name: 'format-list-bulleted',
       backgroundColor: colors.primary,
-    }
+    },
   },
   {
     title: 'My Message',
     icon: {
       name: 'email',
       backgroundColor: colors.secondary,
-    }
+    },
+    targetScreen: routes.MESSAGES,
   },
-]
+];
 
 export default function AccountDetailsScreen() {
+  const navigation = useNavigation();
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -37,12 +41,13 @@ export default function AccountDetailsScreen() {
       <View style={styles.container}>
         <FlatList
           data={menuItems}
-          keyExtractor={menuItem => menuItem.title}
+          keyExtractor={(menuItem) => menuItem.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
               IconComponent={<Icon {...item.icon} />}
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
         />
@@ -52,7 +57,7 @@ export default function AccountDetailsScreen() {
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
     </Screen>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
