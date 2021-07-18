@@ -6,6 +6,7 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Screen from './app/components/Screen';
 
@@ -44,8 +45,14 @@ const TweetDetails = () => {
   );
 };
 
+const Account = () => (
+  <Screen>
+    <Text>Account</Text>
+  </Screen>
+);
+
 const Stack = createStackNavigator();
-const StackNavigator = () => (
+const HomeNavigator = () => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: {
@@ -65,11 +72,18 @@ const StackNavigator = () => (
   </Stack.Navigator>
 );
 
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Home" component={HomeNavigator} />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
+);
 export default function App() {
   return (
     <>
       <NavigationContainer>
-        <StackNavigator />
+        <TabNavigator />
       </NavigationContainer>
     </>
   );
