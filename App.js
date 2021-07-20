@@ -5,6 +5,8 @@ import AuthNavigator from './app/navigation/AuthNavigator';
 import AppNavigator from './app/navigation/AppNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
 
+import OfflineNotice from './app/components/OfflineNotice';
+import { Text } from 'react-native';
 export default function App() {
   return (
     <>
@@ -12,6 +14,7 @@ export default function App() {
         {/* <AuthNavigator /> */}
         <AppNavigator />
       </NavigationContainer>
+      <OfflineNotice />
     </>
   );
 }

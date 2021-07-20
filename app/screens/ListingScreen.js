@@ -40,6 +40,7 @@ function ListingScreen() {
           title={item.title}
           subtitle={`$${item.price}`}
           imageUrl={item.images[0]?.url}
+          thumbnailUrl={item.images[0]?.thumbnailUrl}
           onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
         />
       )}
@@ -58,7 +59,6 @@ export default () => {
 const styles = StyleSheet.create({
   screen: {
     padding: 20,
-    paddingTop: 40,
     backgroundColor: colors.light,
   },
   spinner: { marginTop: 40 },
