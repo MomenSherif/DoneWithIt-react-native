@@ -8,6 +8,7 @@ import Icon from '../components/Icon';
 import colors from '../config/colors';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../navigation/routes';
+import { useLogout, useUser } from '../store/Auth';
 
 const menuItems = [
   {
@@ -29,12 +30,15 @@ const menuItems = [
 
 export default function AccountDetailsScreen() {
   const navigation = useNavigation();
+  const user = useUser();
+  const logout = useLogout();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Mo'men Sherif"
-          subtitle="momensherif.2019@gmail.com"
+          title={user.name}
+          subtitle={user.email}
           image={require('../assets/demon-slayer.jpg')}
         />
       </View>
@@ -55,6 +59,7 @@ export default function AccountDetailsScreen() {
       <ListItem
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        onPress={logout}
       />
     </Screen>
   );

@@ -8,7 +8,6 @@ import Constants from 'expo-constants';
 
 export default function OfflineNotice() {
   const { isInternetReachable, type } = useNetInfo();
-  console.log(type, isInternetReachable);
   if (type === 'unknown' || isInternetReachable) return null;
 
   return (

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import jwtDecode from 'jwt-decode';
 
-import { FormField, SubmitButton } from '../components/forms';
+import { FormField, SubmitButton, ErrorMessage } from '../components/forms';
 import Screen from '../components/Screen';
+import { useLogin } from '../store/Auth';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -12,15 +14,24 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function LoginScreen() {
+  const [visibleError, setVisibleError] = useState(false);
+  const login = useLogin({
+    onError: () => setVisibleError(true),
+  });
+
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require('../assets/logo-red.png')} />
       <Formik
         initialValues={{ email: '', password: '' }}
-        onSubmit={console.log}
+        onSubmit={login}
         validationSchema={validationSchema}
       >
         <>
+          <ErrorMessage
+            error="Invalid email and/or password."
+            visible={visibleError}
+          />
           <FormField
             name="email"
             autoCapitalize="none"
