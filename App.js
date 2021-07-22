@@ -5,6 +5,7 @@ import AppLoading from 'expo-app-loading';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import AppNavigator from './app/navigation/AppNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
+import { navigationRef } from './app/navigation/rootNavigation';
 import OfflineNotice from './app/components/OfflineNotice';
 import AuthProvider, { useTryAutoLogin, useUser } from './app/store/Auth';
 
@@ -24,7 +25,7 @@ function App() {
 
   return (
     <>
-      <NavigationContainer theme={navigationTheme}>
+      <NavigationContainer ref={navigationRef} theme={navigationTheme}>
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
       <OfflineNotice />
